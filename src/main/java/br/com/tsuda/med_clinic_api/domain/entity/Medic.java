@@ -1,6 +1,7 @@
 package br.com.tsuda.med_clinic_api.domain.entity;
 
 import br.com.tsuda.med_clinic_api.controller.request.MedicRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.MedicUpdateRequestDTO;
 import br.com.tsuda.med_clinic_api.domain.enums.SpecialtyEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,17 +39,17 @@ public class Medic {
         this.active = true;
     }
 
-//    public void update(MedicUpdateRequestDTO request) {
-//        if(request.name() != null) {
-//          this.name = request.name();
-//        }
-//        if(request.cellphone() != null) {
-//            this.cellphone = request.cellphone();
-//        }
-//        if(request.address() != null) {
-//            this.address.update(request.address());
-//        }
-//    }
+    public void update(MedicUpdateRequestDTO request) {
+        if(request.name() != null) {
+          this.name = request.name();
+        }
+        if(request.cellphone() != null) {
+            this.cellphone = request.cellphone();
+        }
+        if(request.address() != null) {
+            this.address.update(request.address());
+        }
+    }
 
     public void delete() {
         this.active = false;
