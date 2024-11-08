@@ -41,4 +41,11 @@ public class MedicServiceImpl implements MedicService{
 
         return new MedicResponseDTO(medic);
     }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Medic medic = medicRepository.getReferenceById(id);
+        medic.delete();
+    }
 }

@@ -12,4 +12,6 @@ public interface MedicService {
     Page<MedicResponseDTO> getAll(Pageable pagination);
 
     MedicResponseDTO update(MedicUpdateRequestDTO requestDTO);
+
+    void delete(Long id);
 }
