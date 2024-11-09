@@ -41,6 +41,14 @@ public class MedicController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Medic by id")
+    public ResponseEntity<MedicResponseDTO> getById(@PathVariable Long id) {
+        MedicResponseDTO response = medicService.getById(id);
+
+        return ResponseEntity.ok(response);
+    }
+
     @PutMapping
     @Operation(summary = "Update Medic by id")
     public ResponseEntity<MedicResponseDTO> update(@RequestBody @Valid MedicUpdateRequestDTO request) {

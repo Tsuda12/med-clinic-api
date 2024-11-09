@@ -34,6 +34,13 @@ public class MedicServiceImpl implements MedicService{
     }
 
     @Override
+    public MedicResponseDTO getById(Long id) {
+        Medic medic = medicRepository.getReferenceById(id);
+
+        return new MedicResponseDTO(medic);
+    }
+
+    @Override
     @Transactional
     public MedicResponseDTO update(MedicUpdateRequestDTO request) {
         Medic medic = medicRepository.getReferenceById(request.id());
