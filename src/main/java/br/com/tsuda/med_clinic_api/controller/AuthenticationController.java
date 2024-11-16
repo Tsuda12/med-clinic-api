@@ -1,6 +1,9 @@
 package br.com.tsuda.med_clinic_api.controller;
 
 import br.com.tsuda.med_clinic_api.controller.request.AuthenticationRequestDTO;
+import br.com.tsuda.med_clinic_api.domain.entity.User;
+import br.com.tsuda.med_clinic_api.controller.response.TokenJWTResponseDTO;
+import br.com.tsuda.med_clinic_api.service.TokenServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +21,15 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager manager;
+    @Autowired
+    private TokenServiceImpl tokenService;
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid AuthenticationRequestDTO request) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.login(), request.password());
-        Authentication authentication = manager.authenticate(token);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.login(), request.password());
+        Authentication authentication = manager.authenticate(authenticationToken);
+        String tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new TokenJWTResponseDTO(tokenJWT));
     }
 }

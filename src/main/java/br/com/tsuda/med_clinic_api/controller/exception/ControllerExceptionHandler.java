@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.controller.handler;
+package br.com.tsuda.med_clinic_api.controller.exception;
 
 import br.com.tsuda.med_clinic_api.controller.response.ArgumentNotValidResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
