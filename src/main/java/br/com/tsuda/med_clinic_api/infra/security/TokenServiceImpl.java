@@ -1,9 +1,10 @@
-package br.com.tsuda.med_clinic_api.service;
+package br.com.tsuda.med_clinic_api.infra.security;
 
 import br.com.tsuda.med_clinic_api.domain.entity.User;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,21 @@ public class TokenServiceImpl {
 
         } catch (JWTCreationException exception){
             throw new RuntimeException("Error to generate Token JWT", exception);
+        }
+    }
+
+    public String validToken(String tokenJWT) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+
+            return JWT.require(algorithm)
+                    .withIssuer("API Medic Clinic")
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+
+        } catch (JWTVerificationException exception){
+            throw new RuntimeException("Token JWT invalid or expirate!");
         }
     }
 
