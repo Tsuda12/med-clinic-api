@@ -6,11 +6,13 @@ import br.com.tsuda.med_clinic_api.controller.response.patient.PatientResponseDT
 import br.com.tsuda.med_clinic_api.domain.entity.Patient;
 import br.com.tsuda.med_clinic_api.domain.repository.PatientRepository;
 import br.com.tsuda.med_clinic_api.service.interfaces.PatientService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -38,7 +40,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     @Transactional
     public PatientResponseDTO getById(Long id) {
-        Patient patient = patientRepository.getReferenceById(id);
+        Patient patient = patientRepository.findByIdAndActiveTrue(id);
+        if(patient == null) {
+            throw new EntityNotFoundException("Patient with id " + id + " not found!");
+        }
 
         return new PatientResponseDTO(patient);
     }
