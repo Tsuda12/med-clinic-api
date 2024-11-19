@@ -11,4 +11,6 @@ public interface PatientService {
     PatientResponseDTO create(PatientRequestDTO request);
 
     Page<PatientResponseDTO> getAll(Pageable pagination);
+
+    PatientResponseDTO getById(Long id);
 }

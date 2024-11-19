@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,14 @@ public class PatientController {
     public ResponseEntity<Page<PatientResponseDTO>> getAll(@PageableDefault(size = 10, page = 0, sort = {"name"},
             direction = Sort.Direction.ASC) Pageable pagination) {
         Page<PatientResponseDTO> response = patientService.getAll(pagination);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Patient by id")
+    public ResponseEntity<PatientResponseDTO> getById(@PathVariable Long id) {
+        PatientResponseDTO response = patientService.getById(id);
 
         return ResponseEntity.ok(response);
     }

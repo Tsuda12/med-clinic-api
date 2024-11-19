@@ -27,9 +27,18 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    @Transactional
     public Page<PatientResponseDTO> getAll(Pageable pagination) {
         Page<Patient> patients = patientRepository.findAllByActiveTrue(pagination);
 
         return patients.map(PatientResponseDTO::new);
+    }
+
+    @Override
+    @Transactional
+    public PatientResponseDTO getById(Long id) {
+        Patient patient = patientRepository.getReferenceById(id);
+
+        return new PatientResponseDTO(patient);
     }
 }
