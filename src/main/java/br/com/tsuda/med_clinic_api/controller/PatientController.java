@@ -4,10 +4,14 @@ import br.com.tsuda.med_clinic_api.controller.request.patient.PatientRequestDTO;
 import br.com.tsuda.med_clinic_api.controller.response.patient.PatientResponseDTO;
 import br.com.tsuda.med_clinic_api.service.interfaces.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +33,14 @@ public class PatientController {
         var uri = uriBuilder.path("/patients/{id}").buildAndExpand(response.id).toUri();
 
         return ResponseEntity.created(uri).body(response);
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all Patients")
+    public ResponseEntity<Page<PatientResponseDTO>> getAll(@PageableDefault(size = 10, page = 0, sort = {"name"},
+            direction = Sort.Direction.ASC) Pageable pagination) {
+        Page<PatientResponseDTO> response = patientService.getAll(pagination);
+
+        return ResponseEntity.ok(response);
     }
 }

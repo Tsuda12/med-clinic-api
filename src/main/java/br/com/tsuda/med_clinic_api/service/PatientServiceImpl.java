@@ -7,6 +7,8 @@ import br.com.tsuda.med_clinic_api.domain.repository.PatientRepository;
 import br.com.tsuda.med_clinic_api.service.interfaces.PatientService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +24,12 @@ public class PatientServiceImpl implements PatientService {
         patientRepository.save(patient);
 
         return new PatientResponseDTO(patient);
+    }
+
+    @Override
+    public Page<PatientResponseDTO> getAll(Pageable pagination) {
+        Page<Patient> patients = patientRepository.findAllByActiveTrue(pagination);
+
+        return patients.map(PatientResponseDTO::new);
     }
 }
