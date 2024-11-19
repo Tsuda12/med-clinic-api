@@ -6,6 +6,7 @@ import br.com.tsuda.med_clinic_api.controller.response.medic.MedicResponseDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.Medic;
 import br.com.tsuda.med_clinic_api.domain.repository.MedicRepository;
 import br.com.tsuda.med_clinic_api.service.interfaces.MedicService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,7 +37,10 @@ public class MedicServiceImpl implements MedicService {
 
     @Override
     public MedicResponseDTO getById(Long id) {
-        Medic medic = medicRepository.getReferenceById(id);
+        Medic medic = medicRepository.findByIdAndActiveTrue(id);
+        if(medic == null) {
+            throw new EntityNotFoundException("Patient with id " + id + " not found!");
+        }
 
         return new MedicResponseDTO(medic);
     }
@@ -44,7 +48,10 @@ public class MedicServiceImpl implements MedicService {
     @Override
     @Transactional
     public MedicResponseDTO update(MedicUpdateRequestDTO request) {
-        Medic medic = medicRepository.getReferenceById(request.id());
+        Medic medic = medicRepository.findByIdAndActiveTrue(request.id());
+        if(medic == null) {
+            throw new EntityNotFoundException("Patient with id " + request.id() + " not found!");
+        }
         medic.update(request);
 
         return new MedicResponseDTO(medic);
@@ -53,7 +60,10 @@ public class MedicServiceImpl implements MedicService {
     @Override
     @Transactional
     public void delete(Long id) {
-        Medic medic = medicRepository.getReferenceById(id);
+        Medic medic = medicRepository.findByIdAndActiveTrue(id);
+        if(medic == null) {
+            throw new EntityNotFoundException("Patient with id " + id + " not found!");
+        }
         medic.delete();
     }
 }

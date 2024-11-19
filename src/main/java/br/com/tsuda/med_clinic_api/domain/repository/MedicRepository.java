@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicRepository extends JpaRepository<Medic, Long> {
     Page<Medic> findAllByActiveTrue(Pageable pagination);
+
+    Medic findByIdAndActiveTrue(Long id);
 }
