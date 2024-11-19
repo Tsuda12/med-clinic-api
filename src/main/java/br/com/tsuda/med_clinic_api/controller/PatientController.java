@@ -1,6 +1,7 @@
 package br.com.tsuda.med_clinic_api.controller;
 
 import br.com.tsuda.med_clinic_api.controller.request.patient.PatientRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.patient.PatientUpdateRequestDTO;
 import br.com.tsuda.med_clinic_api.controller.response.patient.PatientResponseDTO;
 import br.com.tsuda.med_clinic_api.service.interfaces.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +51,14 @@ public class PatientController {
     @Operation(summary = "Get Patient by id")
     public ResponseEntity<PatientResponseDTO> getById(@PathVariable Long id) {
         PatientResponseDTO response = patientService.getById(id);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update Patient by id")
+    public ResponseEntity<PatientResponseDTO> update(@PathVariable Long id, @RequestBody PatientUpdateRequestDTO request) {
+        PatientResponseDTO response = patientService.update(id, request);
 
         return ResponseEntity.ok(response);
     }

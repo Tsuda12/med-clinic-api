@@ -1,6 +1,7 @@
 package br.com.tsuda.med_clinic_api.service;
 
 import br.com.tsuda.med_clinic_api.controller.request.patient.PatientRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.patient.PatientUpdateRequestDTO;
 import br.com.tsuda.med_clinic_api.controller.response.patient.PatientResponseDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.Patient;
 import br.com.tsuda.med_clinic_api.domain.repository.PatientRepository;
@@ -38,6 +39,15 @@ public class PatientServiceImpl implements PatientService {
     @Transactional
     public PatientResponseDTO getById(Long id) {
         Patient patient = patientRepository.getReferenceById(id);
+
+        return new PatientResponseDTO(patient);
+    }
+
+    @Override
+    @Transactional
+    public PatientResponseDTO update(Long id, PatientUpdateRequestDTO request) {
+        Patient patient = patientRepository.getReferenceById(id);
+        patient.update(request);
 
         return new PatientResponseDTO(patient);
     }

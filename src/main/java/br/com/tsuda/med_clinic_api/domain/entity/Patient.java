@@ -1,6 +1,7 @@
 package br.com.tsuda.med_clinic_api.domain.entity;
 
 import br.com.tsuda.med_clinic_api.controller.request.patient.PatientRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.patient.PatientUpdateRequestDTO;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,5 +42,20 @@ public class Patient {
         cpf = request.cpf();
         address = new Address(request.address());
         active = true;
+    }
+
+    public void update(PatientUpdateRequestDTO request) {
+        if(request.name() != null) {
+            this.name = request.name();
+        }
+        if(request.email() != null) {
+            this.email = request.email();
+        }
+        if(request.cellphone() != null) {
+            this.cellphone = request.cellphone();
+        }
+        if(request.address() != null) {
+            this.address.update(request.address());
+        }
     }
 }
