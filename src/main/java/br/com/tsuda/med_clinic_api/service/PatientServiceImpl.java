@@ -51,9 +51,22 @@ public class PatientServiceImpl implements PatientService {
     @Override
     @Transactional
     public PatientResponseDTO update(Long id, PatientUpdateRequestDTO request) {
-        Patient patient = patientRepository.getReferenceById(id);
+        Patient patient = patientRepository.findByIdAndActiveTrue(id);
+        if(patient == null) {
+            throw new EntityNotFoundException("Patient with id " + id + " not found!");
+        }
         patient.update(request);
 
         return new PatientResponseDTO(patient);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Patient patient = patientRepository.findByIdAndActiveTrue(id);
+        if(patient == null) {
+            throw new EntityNotFoundException("Patient with id " + id + " not found!");
+        }
+        patient.delete();
     }
 }

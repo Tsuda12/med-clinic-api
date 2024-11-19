@@ -16,4 +16,6 @@ public interface PatientService {
     PatientResponseDTO getById(Long id);
 
     PatientResponseDTO update(Long id, PatientUpdateRequestDTO request);
+
+    void delete(Long id);
 }

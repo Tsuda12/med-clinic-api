@@ -58,4 +58,8 @@ public class Patient {
             this.address.update(request.address());
         }
     }
+
+    public void delete() {
+        this.active = false;
+    }
 }
