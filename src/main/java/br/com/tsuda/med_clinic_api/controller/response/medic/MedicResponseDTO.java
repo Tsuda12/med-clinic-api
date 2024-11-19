@@ -1,5 +1,6 @@
-package br.com.tsuda.med_clinic_api.controller.response;
+package br.com.tsuda.med_clinic_api.controller.response.medic;
 
+import br.com.tsuda.med_clinic_api.controller.response.address.AddressResponseDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.Medic;
 import br.com.tsuda.med_clinic_api.domain.enums.SpecialtyEnum;
 

@@ -1,6 +1,6 @@
 package br.com.tsuda.med_clinic_api.domain.entity;
 
-import br.com.tsuda.med_clinic_api.controller.request.AddressRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.address.AddressRequestDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

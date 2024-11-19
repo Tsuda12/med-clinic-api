@@ -1,6 +1,7 @@
-package br.com.tsuda.med_clinic_api.infra.security;
+package br.com.tsuda.med_clinic_api.security;
 
 import br.com.tsuda.med_clinic_api.domain.repository.UserRepository;
+import br.com.tsuda.med_clinic_api.security.service.TokenServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

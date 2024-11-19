@@ -1,7 +1,7 @@
 package br.com.tsuda.med_clinic_api.domain.entity;
 
-import br.com.tsuda.med_clinic_api.controller.request.MedicRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.request.MedicUpdateRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicUpdateRequestDTO;
 import br.com.tsuda.med_clinic_api.domain.enums.SpecialtyEnum;
 import jakarta.persistence.*;
 import lombok.*;

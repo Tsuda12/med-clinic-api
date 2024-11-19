@@ -1,6 +1,6 @@
-package br.com.tsuda.med_clinic_api.controller.exception;
+package br.com.tsuda.med_clinic_api.controller.handler;
 
-import br.com.tsuda.med_clinic_api.controller.response.ArgumentNotValidResponseDTO;
+import br.com.tsuda.med_clinic_api.controller.handler.response.ArgumentNotValidResponseDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

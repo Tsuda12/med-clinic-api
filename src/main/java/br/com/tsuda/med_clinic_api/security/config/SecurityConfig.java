@@ -1,5 +1,6 @@
-package br.com.tsuda.med_clinic_api.infra.security;
+package br.com.tsuda.med_clinic_api.security.config;
 
+import br.com.tsuda.med_clinic_api.security.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

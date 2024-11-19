@@ -1,9 +1,9 @@
-package br.com.tsuda.med_clinic_api.controller;
+package br.com.tsuda.med_clinic_api.security.controller;
 
-import br.com.tsuda.med_clinic_api.controller.request.AuthenticationRequestDTO;
+import br.com.tsuda.med_clinic_api.security.controller.request.AuthenticationRequestDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.User;
-import br.com.tsuda.med_clinic_api.infra.security.TokenJWTResponseDTO;
-import br.com.tsuda.med_clinic_api.infra.security.TokenServiceImpl;
+import br.com.tsuda.med_clinic_api.security.controller.response.TokenJWTResponseDTO;
+import br.com.tsuda.med_clinic_api.security.service.TokenServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

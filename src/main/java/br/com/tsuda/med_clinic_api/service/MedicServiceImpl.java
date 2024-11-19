@@ -1,10 +1,11 @@
 package br.com.tsuda.med_clinic_api.service;
 
-import br.com.tsuda.med_clinic_api.controller.request.MedicRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.request.MedicUpdateRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.response.MedicResponseDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicUpdateRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.response.medic.MedicResponseDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.Medic;
 import br.com.tsuda.med_clinic_api.domain.repository.MedicRepository;
+import br.com.tsuda.med_clinic_api.service.interfaces.MedicService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MedicServiceImpl implements MedicService{
+public class MedicServiceImpl implements MedicService {
 
     @Autowired
     private MedicRepository medicRepository;

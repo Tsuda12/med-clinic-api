@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.controller.request;
+package br.com.tsuda.med_clinic_api.security.controller.request;
 
 public record AuthenticationRequestDTO(
         String login,

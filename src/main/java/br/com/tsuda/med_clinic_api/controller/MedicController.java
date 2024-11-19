@@ -1,9 +1,9 @@
 package br.com.tsuda.med_clinic_api.controller;
 
-import br.com.tsuda.med_clinic_api.controller.request.MedicRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.request.MedicUpdateRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.response.MedicResponseDTO;
-import br.com.tsuda.med_clinic_api.service.MedicService;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicUpdateRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.response.medic.MedicResponseDTO;
+import br.com.tsuda.med_clinic_api.service.interfaces.MedicService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

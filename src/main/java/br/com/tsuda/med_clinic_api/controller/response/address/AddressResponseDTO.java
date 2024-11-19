@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.controller.response;
+package br.com.tsuda.med_clinic_api.controller.response.address;
 
 import br.com.tsuda.med_clinic_api.domain.entity.Address;
 

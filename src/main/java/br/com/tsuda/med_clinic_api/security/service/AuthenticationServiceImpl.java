@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.service;
+package br.com.tsuda.med_clinic_api.security.service;
 
 import br.com.tsuda.med_clinic_api.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

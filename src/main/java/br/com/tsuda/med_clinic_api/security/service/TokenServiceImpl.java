@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.infra.security;
+package br.com.tsuda.med_clinic_api.security.service;
 
 import br.com.tsuda.med_clinic_api.domain.entity.User;
 import com.auth0.jwt.JWT;

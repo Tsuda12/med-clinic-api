@@ -1,8 +1,8 @@
-package br.com.tsuda.med_clinic_api.service;
+package br.com.tsuda.med_clinic_api.service.interfaces;
 
-import br.com.tsuda.med_clinic_api.controller.request.MedicRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.request.MedicUpdateRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.response.MedicResponseDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.request.medic.MedicUpdateRequestDTO;
+import br.com.tsuda.med_clinic_api.controller.response.medic.MedicResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

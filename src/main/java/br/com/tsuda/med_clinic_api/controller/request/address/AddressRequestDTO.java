@@ -1,4 +1,4 @@
-package br.com.tsuda.med_clinic_api.controller.request;
+package br.com.tsuda.med_clinic_api.controller.request.address;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
