@@ -22,11 +22,7 @@ public class SchedulingController {
 
     @PostMapping
     @Operation(summary = "Create Scheduling")
-    public ResponseEntity<SchedulingResponseDTO> create(@RequestBody @Valid SchedulingRequestDTO request,  UriComponentsBuilder uriBuilder) {
-        SchedulingResponseDTO response = schedulingService.create(request);
-
-        var uri = uriBuilder.path("/scheduling/{id}").buildAndExpand(response.id()).toUri();
-
-        return ResponseEntity.created(uri).body(response);
+    public void create(@RequestBody @Valid SchedulingRequestDTO request) throws Exception {
+       schedulingService.create(request);
     }
 }

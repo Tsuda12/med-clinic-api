@@ -16,16 +16,16 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
 
     Medic findByIdAndActiveTrue(Long id);
 
-    @Query("""
-            SELECT m 
-            FROM Medics m
+    @Query(value = """
+            SELECT m
+            FROM medics m
             WHERE m.active = true AND m.specialty = :specialty AND m.id NOT IN(
                 SELECT s.medic.id 
-                FROM Schedulings s
+                FROM schedulings s
                 WHERE s.date = :date
             )
             ORDER BY random()
             LIMIT 1
-            """)
+            """, nativeQuery = true)
     Medic choiceFreeRandomMedic(SpecialtyEnum specialty, LocalDateTime date);
 }

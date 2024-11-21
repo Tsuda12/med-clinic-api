@@ -5,5 +5,5 @@ import br.com.tsuda.med_clinic_api.controller.response.scheduling.SchedulingResp
 
 public interface SchedulingService {
 
-    SchedulingResponseDTO create(SchedulingRequestDTO request) throws Exception;
+    void create(SchedulingRequestDTO request) throws Exception;
 }

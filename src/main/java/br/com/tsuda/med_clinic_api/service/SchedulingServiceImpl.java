@@ -1,7 +1,6 @@
 package br.com.tsuda.med_clinic_api.service;
 
 import br.com.tsuda.med_clinic_api.controller.request.scheduling.SchedulingRequestDTO;
-import br.com.tsuda.med_clinic_api.controller.response.scheduling.SchedulingResponseDTO;
 import br.com.tsuda.med_clinic_api.domain.entity.Medic;
 import br.com.tsuda.med_clinic_api.domain.entity.Patient;
 import br.com.tsuda.med_clinic_api.domain.entity.Scheduling;
@@ -9,9 +8,12 @@ import br.com.tsuda.med_clinic_api.domain.repository.MedicRepository;
 import br.com.tsuda.med_clinic_api.domain.repository.PatientRepository;
 import br.com.tsuda.med_clinic_api.domain.repository.SchedulingRepository;
 import br.com.tsuda.med_clinic_api.service.interfaces.SchedulingService;
+import br.com.tsuda.med_clinic_api.service.validation.SchedulingValidation;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SchedulingServiceImpl implements SchedulingService {
@@ -22,25 +24,29 @@ public class SchedulingServiceImpl implements SchedulingService {
     private MedicRepository medicRepository;
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private List<SchedulingValidation> validations;
 
     @Override
-    public SchedulingResponseDTO create(SchedulingRequestDTO request) throws Exception {
+    public void create(SchedulingRequestDTO request) throws Exception {
         if (!patientRepository.existsById(request.patientId())) {
             throw new EntityNotFoundException("Patient with id " + request.patientId() + " not found!");
         }
-        Patient patient = patientRepository.getReferenceById(request.patientId());
 
         if (request.medicId() != null && !medicRepository.existsById(request.medicId())) {
             throw new EntityNotFoundException("Medic with id " + request.medicId() + " not found!");
         }
-        Medic medic = choiceMedic(request);
 
+        validations.forEach(v -> v.validate(request));
+
+        Patient patient = patientRepository.getReferenceById(request.patientId());
+        Medic medic = checkMedic(request);
         Scheduling scheduling = new Scheduling(null, medic, patient, request.date());
 
-        return null;
+        schedulingRepository.save(scheduling);
     }
 
-    private Medic choiceMedic(SchedulingRequestDTO request) throws Exception {
+    private Medic checkMedic(SchedulingRequestDTO request) throws Exception {
         if (request.medicId() != null) {
             return medicRepository.getReferenceById(request.medicId());
         }
