@@ -5,6 +5,7 @@ import br.com.tsuda.med_clinic_api.controller.request.patient.PatientUpdateReque
 import br.com.tsuda.med_clinic_api.controller.response.patient.PatientResponseDTO;
 import br.com.tsuda.med_clinic_api.service.interfaces.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/patients")
+@SecurityRequirement(name = "Authorization")
 public class PatientController {
 
     @Autowired

@@ -4,6 +4,7 @@ import br.com.tsuda.med_clinic_api.controller.request.scheduling.SchedulingReque
 import br.com.tsuda.med_clinic_api.controller.response.scheduling.SchedulingResponseDTO;
 import br.com.tsuda.med_clinic_api.service.interfaces.SchedulingService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/scheduling")
+@SecurityRequirement(name = "Authorization")
 public class SchedulingController {
 
     @Autowired
