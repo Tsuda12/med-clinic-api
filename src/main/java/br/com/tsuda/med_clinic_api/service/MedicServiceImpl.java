@@ -29,6 +29,7 @@ public class MedicServiceImpl implements MedicService {
     }
 
     @Override
+    @Transactional
     public Page<MedicResponseDTO> getAll(Pageable pagination) {
         Page<Medic> medics = medicRepository.findAllByActiveTrue(pagination);
 
@@ -36,6 +37,7 @@ public class MedicServiceImpl implements MedicService {
     }
 
     @Override
+    @Transactional
     public MedicResponseDTO getById(Long id) {
         Medic medic = medicRepository.findByIdAndActiveTrue(id);
         if(medic == null) {
